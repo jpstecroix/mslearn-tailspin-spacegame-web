@@ -29,19 +29,19 @@ RUN cd /home/vscode && mkdir azure-pipelines && cd azure-pipelines
 ARG ARCH="x64"
 ARG AGENT_VERSION="2.206.1"
 
-RUN cd /home/vscode/azure-pipelines \
-    && curl -O -L https://vstsagentpackage.azureedge.net/agent/${AGENT_VERSION}/vsts-agent-linux-${ARCH}-${AGENT_VERSION}.tar.gz \
-    && tar xzf /home/vscode/azure-pipelines/vsts-agent-linux-${ARCH}-${AGENT_VERSION}.tar.gz \
-    && /home/vscode/azure-pipelines/bin/installdependencies.sh
+#RUN cd /home/vscode/azure-pipelines \
+#    && curl -O -L https://vstsagentpackage.azureedge.net/agent/${AGENT_VERSION}/vsts-agent-linux-${ARCH}-${AGENT_VERSION}.tar.gz \
+#    && tar xzf /home/vscode/azure-pipelines/vsts-agent-linux-${ARCH}-${AGENT_VERSION}.tar.gz \
+#    && /home/vscode/azure-pipelines/bin/installdependencies.sh
 
 # copy over the start.sh script
-COPY library-scripts/start.sh /home/vscode/azure-pipelines/start.sh
+# COPY library-scripts/start.sh /home/vscode/azure-pipelines/start.sh
 
 # Apply ownership of home folder
 RUN chown -R vscode ~vscode
 
 # make the script executable
-RUN chmod +x /home/vscode/azure-pipelines/start.sh
+# RUN chmod +x /home/vscode/azure-pipelines/start.sh
 
 # Clean up
 RUN rm -rf /var/lib/apt/lists/* /tmp/library-scripts
